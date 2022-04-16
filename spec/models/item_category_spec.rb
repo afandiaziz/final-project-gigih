@@ -68,28 +68,4 @@ RSpec.describe ItemCategory, type: :model do
         )
         expect(itemCategory).to be_valid
     end
-
-    it 'is valid menu item has many item categories' do
-        category1 = Category.create(
-            name: 'Makanan'
-        )
-        category2 = Category.create(
-            name: 'Makanan Penutup'
-        )
-        menuItem = MenuItem.create(
-            name: 'Kue',
-            price: 4000.0
-        )
-
-        itemCategory1 = ItemCategory.create(
-            category_id: category1.id,
-            item_id: menuItem.id
-        )
-        itemCategory2 = ItemCategory.create(
-            category_id: category2.id,
-            item_id: menuItem.id
-        )
-        expect(itemCategory1).to be_valid
-        expect(itemCategory2).to be_valid
-    end
 end
