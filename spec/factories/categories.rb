@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :category do
-    # id { 1 }
-    name { "MyString" }
+    name { Faker::Food.ethnic_category }
   end
 end
