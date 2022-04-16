@@ -7,13 +7,21 @@ class CategoriesController < ApplicationController
         if category.save
             render json: category, status: :created
         else
-            render status: :unprocessable_entity
+            render json: {
+                errors: category.errors
+            }, status: 406
         end
     end
     def update
         category = Category.find(params[:id])
         category.update(category_params)
-        render json: category, status: :ok
+        if category.save
+            render json: category, status: :ok
+        else
+            render json: {
+                errors: category.errors
+            }, status: 406
+        end
     end
     def destroy
         Category.destroy(params[:id])
