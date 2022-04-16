@@ -4,5 +4,5 @@ class MenuItem < ApplicationRecord
     
     validates :name, presence: true, uniqueness: true
     validates :description, length: { maximum: 150 }
-    validates :price, numericality: true, comparison: { greater_than_or_equal_to: 0.01 }
+    validates :price, presence: true, numericality: true, comparison: { greater_than_or_equal_to: 0.01 }
 end
