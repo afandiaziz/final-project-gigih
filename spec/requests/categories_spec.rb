@@ -7,7 +7,7 @@ RSpec.describe "Categories", type: :request do
 
     describe 'GET /categories' do
         before { get '/categories' }
-        it 'return articles' do
+        it 'return categories' do
             expect(JSON.parse(response.body)).not_to be_empty
             expect(JSON.parse(response.body).size).to eq(5)
         end
@@ -40,6 +40,51 @@ RSpec.describe "Categories", type: :request do
             it 'return message not found' do
                 expect(response.body).to match("{\"message\":\"Couldn't find Category with 'id'=10\"}")
             end
+        end
+    end
+    describe 'POST /categories' do
+        context 'the request is valid' do
+            before { post '/categories', params: { name: 'Beverages' } }
+        
+            it 'created a category' do
+                expect(JSON.parse(response.body)['name']).to eq('Beverages')
+            end
+        
+            it 'return status code 201' do
+                expect(response).to have_http_status(201)
+            end
+        end
+    
+        context 'the request is invalid' do
+            before { post '/categories', params: { name: nil } }
+        
+            it 'return status code 422' do
+                expect(response).to have_http_status(422)
+            end
+        
+            it 'return a validation failure message' do
+                expect(response.body).to match("{\"message\":\"Validation failed: Name can't be blank\"}")
+            end
+        end
+    end
+    describe 'PUT /categories/:id' do
+        context 'when the record exists' do
+            before { put "/categories/#{category_id}", params: { name: 'Shopping' } }
+        
+            it 'updated the record' do
+                expect(response.body).to be_empty
+            end
+        
+            it 'return status code 204' do
+                expect(response).to have_http_status(204)
+            end
+        end
+    end
+    describe 'DELETE /categories/:id' do
+        before { delete "/categories/#{category_id}" }
+    
+        it 'return status code 204' do
+            expect(response).to have_http_status(204)
         end
     end
 end
