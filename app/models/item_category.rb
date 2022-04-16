@@ -1,4 +1,4 @@
 class ItemCategory < ApplicationRecord
     belongs_to :Categories
-    belongs_to :MenuItem
+    belongs_to :MenuItems
 end
