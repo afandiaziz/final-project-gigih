@@ -17,8 +17,7 @@ class CategoriesController < ApplicationController
         head :no_content
     end
     def destroy
-        @category = Category.find(params[:id])
-        @category.destroy(params[:id])
+        Category.destroy(params[:id])
         head :no_content
     end
 

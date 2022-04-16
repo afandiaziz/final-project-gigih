@@ -1,34 +1,25 @@
 class ItemCategoriesController < ApplicationController
+    
     def index
-        render json: ItemCategory.all, status: :ok
+        @item_categories = ItemCategory.all
+        jsonResponse(@item_categories)
     end
     def show
-        itemCategory = ItemCategory.find(params[:id])
-        render json: itemCategory, status: :ok
+        @item_category = ItemCategory.find(params[:id])
+        jsonResponse(@item_category)
     end
     def create
-        itemCategory = ItemCategory.create(item_category_params)
-        if itemCategory.save
-            render json: itemCategory, status: :created
-        else
-            render json: {
-                errors: itemCategory.errors
-            }, status: 406
-        end
+        @item_category = ItemCategory.create!(item_category_params)
+        jsonResponse(@item_category, :created)
     end
     def update
-        itemCategory = ItemCategory.find(params[:id])
-        itemCategory.update(item_category_params)
-        if itemCategory.save
-            render json: itemCategory, status: :ok
-        else
-            render json: {
-                errors: itemCategory.errors
-            }, status: 406
-        end
+        @item_category = ItemCategory.find(params[:id])
+        @item_category.update(item_category_params)
+        head :no_content
     end
     def destroy
         ItemCategory.destroy(params[:id])
+        head :no_content
     end
 
     private

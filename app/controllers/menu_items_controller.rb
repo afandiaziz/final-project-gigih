@@ -1,34 +1,24 @@
 class MenuItemsController < ApplicationController
     def index
-        render json: MenuItem.all, status: :ok
+        @menu_items = MenuItem.all
+        jsonResponse(@menu_items)
     end
     def show
-        menu_item = MenuItem.find(params[:id])
-        render json: menu_item, status: :ok
+        @menu_item = MenuItem.find(params[:id])
+        jsonResponse(@menu_item)
     end
     def create
-        menu_item = MenuItem.create(menu_item_params)
-        if menu_item.save
-            render json: menu_item, status: :created
-        else
-            render json: {
-                errors: menu_item.errors
-            }, status: 406
-        end
+        @menu_item = MenuItem.create!(menu_item_params)
+        jsonResponse(@menu_item, :created)
     end
     def update
-        menu_item = MenuItem.find(params[:id])
-        menu_item.update(menu_item_params)
-        if menu_item.save
-            render json: menu_item, status: :ok
-        else
-            render json: {
-                errors: menu_item.errors
-            }, status: 406
-        end
+        @menu_item = MenuItem.find(params[:id])
+        @menu_item.update(menu_item_params)
+        head :no_content
     end
     def destroy
         MenuItem.destroy(params[:id])
+        head :no_content
     end
 
     private
