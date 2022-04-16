@@ -1,35 +1,25 @@
 class CategoriesController < ApplicationController
     def index
-        render json: Category.all, status: :ok
+        @categories = Category.all
+        jsonResponse(@categories)
     end
     def show
-        # category = Category.find(params[:id])
-        json_response(@category)
-        # render json: category, status: :ok
+        @category = Category.find(params[:id])
+        jsonResponse(@category)
     end
     def create
-        category = Category.create(category_params)
-        if category.save
-            render json: category, status: :created
-        else
-            render json: {
-                errors: category.errors
-            }, status: 406
-        end
+        @category = Category.create!(category_params)
+        jsonResponse(@category, :created)
     end
     def update
-        category = Category.find(params[:id])
-        category.update(category_params)
-        if category.save
-            render json: category, status: :ok
-        else
-            render json: {
-                errors: category.errors
-            }, status: 406
-        end
+        @category = Category.find(params[:id])
+        @category.update(category_params)
+        head :no_content
     end
     def destroy
-        Category.destroy(params[:id])
+        @category = Category.find(params[:id])
+        @category.destroy(params[:id])
+        head :no_content
     end
 
     private
