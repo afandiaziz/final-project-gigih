@@ -42,7 +42,7 @@ RSpec.describe Category, type: :model do
             expect(category.errors[:name]).to include("can't be blank")
         end
         
-        it "is invalid with a duplicate name" do
+        it "is invalid update with a duplicate name" do
             category1 = Category.create(
                 name: 'Makanan'
             )
@@ -57,7 +57,7 @@ RSpec.describe Category, type: :model do
             expect(category2.errors[:name]).to include("has already been taken")
         end
         
-        it 'is valid new category' do
+        it 'is valid update new category' do
             category = Category.create(
                 name: 'Makanan'
             )
