@@ -1,4 +1,4 @@
 class ItemCategory < ApplicationRecord
-    has_many :Categories
+    belongs_to :Categories
     # belongs_to :MenuItem
 end
