@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :categories, only: [:create, :index, :update, :destroy, :show]
   resources :menu_items, only: [:create, :index, :update, :destroy, :show]
+  resources :item_categories, only: [:create, :index, :update, :destroy, :show]
 end
