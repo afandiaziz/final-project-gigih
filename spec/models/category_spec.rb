@@ -31,6 +31,15 @@ RSpec.describe Category, type: :model do
     end
 
     describe '-- UPDATE category' do
+        it 'is invalid update without valid id' do
+            expect { 
+                category = Category.find(1)
+                category.update(
+                    name: 'Makanan'
+                ) 
+            }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+
         it 'is invalid update without a name' do
             category = Category.create(
                 name: "Makanan"
@@ -70,7 +79,7 @@ RSpec.describe Category, type: :model do
 
     describe '-- DELETE category' do
         it 'is invalid delete without valid id' do
-            expect{ Category.destroy(1) }.to raise_error(ActiveRecord::RecordNotFound)
+            expect { Category.destroy(1) }.to raise_error(ActiveRecord::RecordNotFound)
         end
         
         it 'is valid delete category' do
