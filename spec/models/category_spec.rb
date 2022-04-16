@@ -90,4 +90,18 @@ RSpec.describe Category, type: :model do
             expect(category).to be_valid
         end
     end
+
+    describe '-- GET category' do
+        it 'is invalid get without valid id' do
+            expect { Category.find(1) }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+        
+        it 'is valid get category with valid id' do
+            Category.create(
+                name: 'Makanan'
+            )
+            category = Category.find(1)
+            expect(category).to be_valid
+        end
+    end
 end
