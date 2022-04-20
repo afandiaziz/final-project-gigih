@@ -68,4 +68,23 @@ RSpec.describe ItemCategory, type: :model do
         )
         expect(itemCategory).to be_valid
     end
+
+    it 'is valid menu item has many item categories' do
+        menuItem = MenuItem.create(
+            name: 'Kue',
+            price: 4000.0
+        )
+        category1 = Category.create(
+            name: 'Makanan'
+        )
+        category2 = Category.create(
+            name: 'Makanan Penutup'
+        )
+        item_categories = ItemCategory.insert_all([
+            { category_id: category1.id, item_id: menuItem.id },
+            { category_id: category2.id, item_id: menuItem.id }
+        ])
+
+        expect(ItemCategory.count).to eq(2)
+    end
 end
