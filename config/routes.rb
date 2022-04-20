@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:create, :index, :update, :destroy, :show]
   resources :menu_items, only: [:create, :index, :update, :destroy, :show]
   resources :item_categories, only: [:create, :index, :update, :destroy, :show]
+  
+  resources :customers, only: [:create, :index, :update, :destroy, :show]
+  resources :orders, only: [:create, :index, :update, :show]
 end
