@@ -1,6 +1,5 @@
 class Category < ApplicationRecord
-    has_many :ItemCategories, :class_name => 'ItemCategory', :foreign_key => 'category_id'
-    validates_associated :ItemCategories
-    # has_many :ItemCategories
+    has_many :item_categories
+    
     validates :name, presence: true, uniqueness: true
 end

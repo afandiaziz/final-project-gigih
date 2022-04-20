@@ -1,6 +1,6 @@
 class MenuItem < ApplicationRecord
-    has_many :ItemCategories, :class_name => 'ItemCategory', :foreign_key => 'item_id'
-    validates_associated :ItemCategories
+    has_many :item_categories, :foreign_key => 'item_id'
+    has_many :order_details
     
     validates :name, presence: true, uniqueness: true
     validates :description, length: { maximum: 150 }
