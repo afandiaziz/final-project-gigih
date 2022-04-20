@@ -49,45 +49,6 @@ RSpec.describe "ItemCategories", type: :request do
             end
         end
     end
-    
-    # describe 'POST /item_categories' do
-    #     context 'the request is invalid' do
-    #         it "Category id can't be blank" do
-    #             post '/item_categories', params: { 
-    #                 category_id: nil,
-    #                 item_id: Faker::Number.between(from: 1, to: 2)
-    #             }
-    #             expect(response).to have_http_status(422)
-    #             expect(JSON.parse(response.body)['message']).to match("Validation failed: Name can't be blank")
-    #         end
-        
-    #     end
-
-    #     context 'the request is valid' do
-    #         it 'created a menu item' do
-    #             post '/item_categories', params: {  
-    #                 category_id: Faker::Number.between(from: 1, to: 5),
-    #                 item_id: Faker::Number.between(from: 1, to: 2)
-    #             } 
-    #             expect(JSON.parse(response.body)['name']).to eq('Nasi Kuning')
-    #             expect(response).to have_http_status(201)
-    #         end
-    #     end
-    # end
-
-    # describe 'PUT /item_categories/:id' do
-    #     context 'when the record exists' do
-    #         before { put "/item_categories/#{itemCategory_id}", params: { category_id: Faker::Number.between(from: 1, to: 5) } }
-        
-    #         it 'updated the record' do
-    #             expect(response.body).to be_empty
-    #         end
-        
-    #         it 'return status code 204' do
-    #             expect(response).to have_http_status(204)
-    #         end
-    #     end
-    # end
 
     describe 'DELETE /item_categories/:id' do
         before { delete "/item_categories/#{itemCategory_id}" }
