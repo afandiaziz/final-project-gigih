@@ -13,8 +13,7 @@ class CategoriesController < ApplicationController
     end
     def update
         @category = Category.find(params[:id])
-        @category.update(category_params)
-        head :no_content
+        jsonResponse(@category.update(category_params), :no_content)
     end
     def destroy
         Category.destroy(params[:id])

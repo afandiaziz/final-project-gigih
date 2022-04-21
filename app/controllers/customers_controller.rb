@@ -13,8 +13,7 @@ class CustomersController < ApplicationController
     end
     def update
         @customer = Customer.find(params[:id])
-        @customer.update(customer_params)
-        head :no_content
+        jsonResponse(@customer.update!(customer_params), :no_content)
     end
     def destroy
         Customer.destroy(params[:id])
