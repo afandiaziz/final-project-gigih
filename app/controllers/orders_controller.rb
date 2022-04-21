@@ -19,25 +19,34 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
         jsonResponse(@order.update!(params.permit(:status)), :no_content)
     end
-    def update
-        @order = Order.find(params[:id])
-        jsonResponse(@order.update!(params.permit(:status)), :no_content)
+
+    def exceed_limit
+        dueDate = DateTime.parse(Date.today.to_s + " 17:00:00")
+        @orders = Order.where(status: 'NEW').where("created_at < ?", dueDate)
+        @orders.update_all(status: 'CANCELED')
+        jsonResponse( @orders, :no_content )
     end
 
     def report
         if params[:date_start]
             date_start = Date.parse(params[:date_start])
+
+            if params[:date_end]
+                date_end = Date.parse(params[:date_end])
+            else 
+                date_end = Date.parse(params[:date_start])
+            end
         else 
+            date_end = Date.today
             date_start = Date.today
         end
 
-        if params[:date_end]
-            date_end = Date.parse(params[:date_end])
-        else 
-            date_end = Date.today
-        end
-
-        orders = Order.select("orders.*, SUM(order_details.price * order_details.quantity) as total_price, customers.name as customer_name, customers.email as customer_email, customers.phone as customer_phone")
+        orders = Order.select("orders.*, 
+                        SUM(order_details.price * order_details.quantity) as total_price, 
+                        customers.name as customer_name, 
+                        customers.email as customer_email, 
+                        customers.phone as customer_phone
+                    ")
                     .joins("LEFT JOIN customers on orders.customer_id = customers.id")
                     .joins("LEFT JOIN order_details on orders.id = order_details.order_id")
                     .where(created_at: date_start.midnight..date_end.end_of_day)
