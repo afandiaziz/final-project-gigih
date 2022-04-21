@@ -5,14 +5,26 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+puts Customer.count
 
-# for i in 1..2 do
-#     Customer.create(
-#         name: Faker::Name.name,
-#         email: Faker::Internet.unique.email,
-#         phone: Faker::PhoneNumber.unique.phone_number
-#     )
-# end
+if Customer.count == 0
+    for i in 1..10 do
+        Customer.create(
+            name: Faker::Name.name,
+            email: Faker::Internet.unique.email,
+            phone: Faker::PhoneNumber.unique.phone_number
+        )
+    end
+end
+if MenuItem.count == 0
+    for i in 1..5 do
+        MenuItem.create(
+            name: Faker::Food.unique.dish,
+            description: "This is Description of Menu Item",
+            price: Faker::Commerce.price(range: 2000..100000.0),
+        )
+    end
+end
 # for i in 1..5 do
 #     Category.create(
 #         name: Faker::Food.unique.ethnic_category

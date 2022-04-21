@@ -1,10 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "Orders", type: :request do
-    let!(:menu_items) { create_list(:menu_item, 2) }
+    let!(:menu_items) { create_list(:menu_item, 5) }
     let!(:customers) { create_list(:customer, 10) }
     let!(:orders) { create_list(:order, 20) }
     let(:order_id) { orders.first.id }
+    let!(:order_details) {
+        for i in 1..20 do
+            totalOrderDetail = Faker::Number.between(from: 1, to: 3)
+            menuItemSelected = []
+            for j in 1..totalOrderDetail do
+                menuitem_id = Faker::Number.between(from: 1, to: 5)
+                if !menuItemSelected.include?(menuitem_id)
+                    menuItemSelected.push(menuitem_id)
+                    create(:order_detail, order_id: i, menu_item_id: menuitem_id)
+                end
+            end
+        end
+    }
     
     describe 'GET /orders' do
         before { get '/orders' }
@@ -100,6 +113,13 @@ RSpec.describe "Orders", type: :request do
             it 'return status code 204' do
                 expect(response).to have_http_status(204)
             end
+        end
+    end
+    describe 'GET /report' do
+        before { get '/report' }
+        it 'return report' do
+            expect(JSON.parse(response.body)).not_to be_empty
+            expect(response).to have_http_status(200)
         end
     end
 end
