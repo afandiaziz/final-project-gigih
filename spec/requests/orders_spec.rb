@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Orders", type: :request do
+    let!(:menu_items) { create_list(:menu_item, 2) }
     let!(:customers) { create_list(:customer, 10) }
     let!(:orders) { create_list(:order, 20) }
     let(:order_id) { orders.first.id }

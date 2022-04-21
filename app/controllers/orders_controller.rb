@@ -65,7 +65,7 @@ class OrdersController < ApplicationController
         results = []
         orders.each_with_index do |order, index|
             orderAttributes = order.attributes
-            orderAttributes['order_details'] = OrderDetail.where(order_id: order.id)
+            orderAttributes['order_details'] = OrderDetail.select('order_details.*, menu_items.name as menu_item_name').where(order_id: order.id).joins("LEFT JOIN menu_items on menu_items.id = order_details.menu_item_id")
             results.push(orderAttributes)
         end
 
