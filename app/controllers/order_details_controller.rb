@@ -14,8 +14,4 @@ class OrderDetailsController < ApplicationController
         @order_detail['total_price'] = @total_price
         jsonResponse(@order_detail)
     end
-    def destroy
-        OrderDetail.destroy(params[:id])
-        head :no_content
-    end
 end

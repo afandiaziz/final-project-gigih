@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :item_categories, only: [:create, :index, :update, :destroy, :show]
   
   resources :customers, only: [:create, :index, :update, :destroy, :show]
-  resources :orders, only: [:create, :index, :update, :show, :destroy]
-  resources :order_details, only: [:create, :index, :show, :destroy]
+  resources :orders, only: [:create, :index, :update, :show]
+  resources :order_details, only: [:create, :index, :show]
 end
