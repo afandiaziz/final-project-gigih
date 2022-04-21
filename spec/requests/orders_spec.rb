@@ -122,4 +122,11 @@ RSpec.describe "Orders", type: :request do
             expect(response).to have_http_status(200)
         end
     end
+    describe 'PUT /orders-exceed-limit' do
+        before { put '/orders-exceed-limit' }
+        it 'return status code 204' do
+            expect(response.body).to be_empty
+            expect(response).to have_http_status(204)
+        end
+    end
 end
