@@ -32,7 +32,7 @@ RSpec.describe "Customers", type: :request do
         end
     
         context 'when the record exists' do
-            it 'return the category' do
+            it 'return the customer' do
                 expect(JSON.parse(response.body)).not_to be_empty
                 expect(JSON.parse(response.body)['id']).to eq(customer_id)
             end

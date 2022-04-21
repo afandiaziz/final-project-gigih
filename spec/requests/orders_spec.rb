@@ -32,7 +32,7 @@ RSpec.describe "Orders", type: :request do
         end
     
         context 'when the record exists' do
-            it 'return the category' do
+            it 'return the order' do
                 expect(JSON.parse(response.body)).not_to be_empty
                 expect(JSON.parse(response.body)['id']).to eq(order_id)
             end
@@ -66,7 +66,7 @@ RSpec.describe "Orders", type: :request do
                 } 
             }
         
-            it 'created a customer' do
+            it 'created a order' do
                 expect(response).to have_http_status(201)
             end
         end

@@ -4,11 +4,14 @@ class OrderDetailsController < ApplicationController
         jsonResponse(@orders)
     end
     def create
-        @order = Order.create!(params.permit(:quantity, :price, :menu_item_id, :order_id))
-        jsonResponse(@order, :created)
+        @order_detail = OrderDetail.create!(params.permit(:quantity, :price, :menu_item_id, :order_id))
+        jsonResponse(@order_detail, :created)
     end
     def show
-        @order = Order.find(params[:id])
-        jsonResponse(@order)
+        @order_detail = OrderDetail.find(params[:id])
+        @total_price = @order_detail.quantity * @order_detail.price
+        @order_detail = @order_detail.attributes
+        @order_detail['total_price'] = @total_price
+        jsonResponse(@order_detail)
     end
 end
