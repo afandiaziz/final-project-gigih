@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
     end
     def update
         @order = Order.find(params[:id])
-        @order.update(params.permit(:status))
-        head :no_content
+        jsonResponse(@order.update!(params.permit(:status)), :no_content)
     end
 end

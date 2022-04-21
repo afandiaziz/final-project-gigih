@@ -14,7 +14,7 @@ class ItemCategoriesController < ApplicationController
     end
     def update
         @item_category = ItemCategory.find(params[:id])
-        jsonResponse(@item_category.update(item_category_params), :no_content)
+        jsonResponse(@item_category.update!(item_category_params), :no_content)
     end
     def destroy
         ItemCategory.destroy(params[:id])

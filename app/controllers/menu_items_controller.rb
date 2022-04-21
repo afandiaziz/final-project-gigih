@@ -14,7 +14,7 @@ class MenuItemsController < ApplicationController
     def update
         @menu_item = MenuItem.find(params[:id])
         @menu_item.update(menu_item_params)
-        jsonResponse(@menu_item.update(menu_item_params), :no_content)
+        jsonResponse(@menu_item.update!(menu_item_params), :no_content)
     end
     def destroy
         MenuItem.destroy(params[:id])
