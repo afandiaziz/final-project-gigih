@@ -19,6 +19,10 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
         jsonResponse(@order.update!(params.permit(:status)), :no_content)
     end
+    def update
+        @order = Order.find(params[:id])
+        jsonResponse(@order.update!(params.permit(:status)), :no_content)
+    end
 
     def report
         if params[:date_start]
@@ -39,13 +43,23 @@ class OrdersController < ApplicationController
                     .where(created_at: date_start.midnight..date_end.end_of_day)
                     .group("orders.id")
 
-                    
         if params[:email]
             orders = orders.where("customer_email = ?", params[:email])
+        end
+        if params[:status]
+            orders = orders.where(status: params[:status])
         end
         if params[:price]
             orders = orders.having("total_price >= ?", params[:price].to_f)
         end
-        jsonResponse(orders)
+        
+        results = []
+        orders.each_with_index do |order, index|
+            orderAttributes = order.attributes
+            orderAttributes['order_details'] = OrderDetail.where(order_id: order.id)
+            results.push(orderAttributes)
+        end
+
+        jsonResponse(results)
     end
 end
