@@ -38,17 +38,16 @@ RSpec.describe "OrderDetails", type: :request do
     
         context 'when the record exists' do
             it 'return the order detail' do
-                puts JSON.parse(response.body)
-                # expect(JSON.parse(response.body)).not_to be_empty
-                # expect(JSON.parse(response.body)['id']).to eq(order_detail_id)
+                expect(JSON.parse(response.body)).not_to be_empty
+                expect(JSON.parse(response.body)['id']).to eq(order_detail_id)
             end
         
-            # it 'return status code 200' do
-            #     expect(response).to have_http_status(200)
-            # end
+            it 'return status code 200' do
+                expect(response).to have_http_status(200)
+            end
         end
     end
-    describe 'POST /orders' do
+    describe 'POST /order_details' do
         context 'the request post is valid' do
             before { 
                 post '/order_details', params: { 

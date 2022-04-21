@@ -1,6 +1,9 @@
 class MenuItemsController < ApplicationController
     def index
-        @menu_items = MenuItem.all
+        @menu_items = MenuItem.select("menu_items.*, GROUP_CONCAT(categories.name) as categories")
+                        .joins("LEFT JOIN item_categories on item_categories.item_id = menu_items.id")
+                        .joins("LEFT JOIN categories ON item_categories.category_id = categories.id")
+                        .group("menu_items.id")
         jsonResponse(@menu_items)
     end
     def show
