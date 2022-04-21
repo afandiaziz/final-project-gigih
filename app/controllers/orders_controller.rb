@@ -15,4 +15,8 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
         jsonResponse(@order.update!(params.permit(:status)), :no_content)
     end
+    def destroy
+        Order.destroy(params[:id])
+        head :no_content
+    end
 end
