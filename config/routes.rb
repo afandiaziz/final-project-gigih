@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   resources :customers, only: [:create, :index, :update, :destroy, :show]
   resources :orders, only: [:create, :index, :update, :show]
   resources :order_details, only: [:create, :index, :show]
+
+  get '/report', to: 'orders#report'
+
 end

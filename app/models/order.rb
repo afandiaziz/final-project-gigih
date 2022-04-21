@@ -7,4 +7,12 @@ class Order < ApplicationRecord
         in: %w(NEW PAID CANCELED),
         message: "%{value} is not a valid status" 
     }
+    
+    def total_price()
+        total = 0
+        order_details.each do |order_detail|
+            total += order_detail.price * order_detail.quantity
+        end
+        return total
+    end
 end
