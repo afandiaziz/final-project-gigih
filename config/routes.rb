@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   resources :order_details, only: [:create, :index, :show]
 
   get '/report', to: 'orders#report'
-  get '/orders-exceed-limit', to: 'orders#exceed_limit'
+  put '/orders-exceed-limit', to: 'orders#exceed_limit'
 
 end
