@@ -2,7 +2,7 @@
 
 # Family Catering - Final Project Backend
 
-Web API berdasarkan 7 user story problem statement. Web API ini dibangun menggunakan framework Ruby on Rails dan database SQLite3. API tersebut diantaranya
+Web API [berdasarkan 7 user story problem statement](https://github.com/afandiaziz/final-project-gigih/blob/main/GG_2.0_Back_End_Class_Final_Project.pdf). Web API ini dibangun menggunakan framework Ruby on Rails dan database SQLite3. API tersebut diantaranya
 
 ### Customers
 
@@ -248,6 +248,11 @@ Web API berdasarkan 7 user story problem statement. Web API ini dibangun menggun
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5427578-04d7534f-d5dc-4d22-88b5-63e81ac3d49f?action=collection%2Ffork&collection-url=entityId%3D5427578-04d7534f-d5dc-4d22-88b5-63e81ac3d49f%26entityType%3Dcollection%26workspaceId%3D58e3854c-57d6-4dff-9586-aee7db494bff)
 
 Serta terdapat Unit Testing Models dan Requests dengan 139 Test Case
+
+```
+Finished in 10.67 seconds (files took 7.5 seconds to load)
+139 examples, 0 failures
+```
 
 ## Installation
 
