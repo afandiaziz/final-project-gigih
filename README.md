@@ -245,7 +245,7 @@ Web API [berdasarkan 7 user story problem statement](https://github.com/afandiaz
   PUT /orders-exceed-limit
 ```
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5427578-04d7534f-d5dc-4d22-88b5-63e81ac3d49f?action=collection%2Ffork&collection-url=entityId%3D5427578-04d7534f-d5dc-4d22-88b5-63e81ac3d49f%26entityType%3Dcollection%26workspaceId%3D58e3854c-57d6-4dff-9586-aee7db494bff)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/5427578/UyrAEbpK)
 
 Serta terdapat Unit Testing Models dan Requests dengan 139 Test Case
 
